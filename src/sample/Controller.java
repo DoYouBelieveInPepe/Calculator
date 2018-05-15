@@ -1,0 +1,173 @@
+package sample;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+
+import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+
+public class Controller  implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
+    Float first_number;
+    Float second_number;
+    Float result;
+
+
+    Float data = 0f;
+    String operation = "";
+    public Button btn_one;
+    public Button btn_two;
+    public Button btn_three;
+    public Button btn_four;
+    public Button btn_five;
+    public Button btn_six;
+    public Button btn_seven;
+    public Button btn_eight;
+    public Button btn_nine;
+    public Button btn_zero;
+    public Button btn_double_zero;
+    public Button btn_floating_point;
+
+    public Button btn_clear;
+    public Button btn_clear_all;
+    public Button btn_plus;
+    public Button btn_minus;
+    public Button btn_multiply;
+    public Button btn_divide;
+
+    public Button btn_equals;
+
+    public TextField upper_field;
+    public TextField lower_field;
+
+    String number;
+    String point;
+    String sign;
+
+    @FXML
+    public void btn_action(ActionEvent event) {
+        //lower_field.setText(value);
+        if (event.getSource() == btn_one) {
+            number = "1";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_two) {
+            number = "2";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_three) {
+            number = "3";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_four) {
+            number = "4";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_five) {
+            number = "5";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_six) {
+            number = "6";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_seven) {
+            number = "7";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_eight) {
+            number = "8";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_nine) {
+            number = "9";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_zero) {
+            number = "0";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_double_zero) {
+            number = "00";
+            upper_field.setText(upper_field.getText() + number);
+            lower_field.setText(lower_field.getText() + number);
+        } else if (event.getSource() == btn_floating_point) {
+            point = ".";
+            upper_field.setText(upper_field.getText() + point);
+            lower_field.setText(lower_field.getText() + point);
+        } else if (event.getSource() == btn_plus) {
+            sign = " + ";
+            upper_field.setText(upper_field.getText() + sign);
+            data = Float.parseFloat(lower_field.getText());
+            operation = "+"; //add
+            lower_field.setText("");
+        } else if (event.getSource() == btn_minus) {
+            sign = " - ";
+            upper_field.setText(upper_field.getText() + sign);
+            data = Float.parseFloat(lower_field.getText());
+            operation = "-"; //subtraction
+            lower_field.setText("");
+        } else if (event.getSource() == btn_multiply) {
+            sign = " * ";
+            upper_field.setText(upper_field.getText() + sign);
+            data = Float.parseFloat(lower_field.getText());
+            operation = "*"; //multiplication
+            lower_field.setText("");
+        } else if (event.getSource() == btn_divide) {
+            sign = " / ";
+            upper_field.setText(upper_field.getText() + sign);
+            data = Float.parseFloat(lower_field.getText());
+            operation = "/"; //division
+            lower_field.setText("");
+        } else if (event.getSource() == btn_clear) {
+            upper_field.setText("");
+            lower_field.setText("");
+            this.data = 0f;
+        } else if (event.getSource() == btn_clear_all) {
+            upper_field.setText("");
+            lower_field.setText("");
+            this.data = 0f;
+        } else if (event.getSource() == btn_equals) {
+        }
+        Float secondOperand = Float.parseFloat(lower_field.getText());
+        switch (operation) {
+            case "+":
+                Float ans = data + secondOperand;
+                lower_field.setText(String.valueOf(ans));
+                break;
+            case "-":
+                ans = data - secondOperand;
+                lower_field.setText(String.valueOf(ans));
+                break;
+            case "*":
+                ans = data * secondOperand;
+                lower_field.setText(String.valueOf(ans));
+                break;
+            case "/":
+                ans = 0f;
+                try {
+                    ans = data / secondOperand;
+                } catch (Exception e) {
+                    lower_field.setText("Error");
+
+                }
+                    /*
+                    try {
+                        secondOperand.equals(0);
+                    } catch (Exception e) {
+                        input.setText("Деление на 0 невозможно");
+                    }*/
+                lower_field.setText(String.valueOf(ans));
+                break;
+        }
+
+    }
+}
