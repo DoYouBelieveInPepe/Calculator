@@ -30,9 +30,9 @@ public class Controller  implements Initializable {
     // 3. Когда пользователь нажимает на любой знак операции, то first_number становится равен результату соответствующей операции first_number и second_number.
     //     И этот результат оказывается в верхнем поле результата.
 
-    Float first_number;
-    Float second_number;
-    Float result;
+    int first_number = 0;
+    int second_number = 0;
+    int result;
 
 
     Float data = 0f;
@@ -117,12 +117,19 @@ public class Controller  implements Initializable {
             point = ".";
             upper_field.setText(upper_field.getText() + point);
             lower_field.setText(lower_field.getText() + point);
-        } else if (event.getSource() == btn_plus) {
+        }
+
+        else if (event.getSource() == btn_plus) {
             sign = " + ";
-            upper_field.setText(upper_field.getText() + sign);
-            data = Float.parseFloat(lower_field.getText());
-            operation = "+"; //add
+            String value = lower_field.getText();
+            int valuenumber = Integer.parseInt(value);
+            this.first_number = valuenumber;
+            //upper_field.setText(upper_field.getText() + sign);
+            //data = Float.parseFloat(lower_field.getText());
             lower_field.setText("");
+            upper_field.setText(value + sign);
+            operation = "+"; //add
+
         } else if (event.getSource() == btn_minus) {
             sign = " - ";
             upper_field.setText(upper_field.getText() + sign);
@@ -150,38 +157,43 @@ public class Controller  implements Initializable {
             lower_field.setText("");
             this.data = 0f;
         } else if (event.getSource() == btn_equals) {
-        }
-        Float secondOperand = Float.parseFloat(lower_field.getText());
-        switch (operation) {
-            case "+":
-                Float ans = data + secondOperand;
-                lower_field.setText(String.valueOf(ans));
-                break;
-            case "-":
-                ans = data - secondOperand;
-                lower_field.setText(String.valueOf(ans));
-                break;
-            case "*":
-                ans = data * secondOperand;
-                lower_field.setText(String.valueOf(ans));
-                break;
-            case "/":
-                ans = 0f;
-                try {
-                    ans = data / secondOperand;
-                } catch (Exception e) {
-                    lower_field.setText("Error");
-
-                }
+            Float secondOperand = Float.parseFloat(lower_field.getText());
+            switch (operation) {
+                case "+":
+                    Float ans;
+                    //Float ans = data + secondOperand;
+                    //lower_field.setText(String.valueOf(ans));
+                    //String v = lower_field.getText();
+                    this.second_number = Integer.parseInt(lower_field.getText());
+                    int system = this.first_number + this.second_number;
+                    lower_field.setText(String.valueOf(system));
+                    //String oldprom = upper_field.getText();
+                    //upper_field.setText(oldprom);
+                    break;
+                case "-":
+                    ans = data - secondOperand;
+                    lower_field.setText(String.valueOf(ans));
+                    break;
+                case "*":
+                    ans = data * secondOperand;
+                    lower_field.setText(String.valueOf(ans));
+                    break;
+                case "/":
+                    ans = 0f;
+                    try {
+                        ans = data / secondOperand;
+                    } catch (Exception e) {
+                        lower_field.setText("Error");
+                    }
                     /*
                     try {
                         secondOperand.equals(0);
                     } catch (Exception e) {
                         input.setText("Деление на 0 невозможно");
                     }*/
-                lower_field.setText(String.valueOf(ans));
-                break;
+                    lower_field.setText(String.valueOf(ans));
+                    break;
+            }
         }
-
     }
 }
